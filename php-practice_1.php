@@ -52,7 +52,7 @@ $prefectoralCapital = [
   '埼玉県' => 'さいたま市',
   '栃木県' => '宇都宮市',
   '群馬県' => '前橋市',
-  '茨城県' => '水戸市'
+  '茨城県' => '水戸市',
 ];
 
 foreach ($prefectoralCapital as $value) {
@@ -72,7 +72,7 @@ foreach ($prefectoralCapital as $key => $value) {
 // Q9 連想配列-3
 $prefectoralCapital += [
     '愛知県' => '名古屋市',
-    '大阪府' => '大阪市'
+    '大阪府' => '大阪市',
 ];
 
 foreach ($prefectoralCapital as $key => $value) {
@@ -86,8 +86,7 @@ foreach ($prefectoralCapital as $key => $value) {
 
 
 // Q10 関数-1
-function hello($name)
-{
+function hello($name) {
     echo "$name さん、こんにちは。\n";
 }
 

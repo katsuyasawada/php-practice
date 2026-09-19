@@ -5,7 +5,6 @@ echo "1から100までのカウントを開始します\n\n";
 for($nums = 1; $nums <= 100; $nums++) {
   if($nums % 20 === 0) {
     echo "tic-tac\n";
-    ;
   } elseif($nums % 4 ===0) {
     echo "tic\n";
   } elseif($nums % 5 ===0) {
@@ -35,20 +34,20 @@ $personalInfos = [
   ],
 ];
 
-//Q2 問1
+//Q2-1
 $name = $personalInfos[1]['name'];
 $tel = $personalInfos[1]['tel'];
 
 echo "{$name}の電話番号は{$tel}です。";
 
 
-//Q2 問2
+//Q2-2
 foreach($personalInfos as $i => $personalInfo) {
     echo  ($i + 1). "番目の{$personalInfo['name']}のメールアドレスは、{$personalInfo['mail']}で、電話番号は{$personalInfo['tel']}です。\n";
 }
 
 
-//Q3 問3
+//Q2-3
 $ages = [20, 25, 30];
 foreach($personalInfos as $i => $personalInfo) {
   $personalInfo['age'] = $ages[$i];
