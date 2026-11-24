@@ -14,7 +14,7 @@ echo $num;
 
 
 // Q3 日付操作
-$date = date('Y年m月d日 H時i分s秒');
+$date = date('Y年m月d日 H時i分s秒');  //この場合の引数の役割は？
 
 echo "現在時刻は、{$date}です。";
 

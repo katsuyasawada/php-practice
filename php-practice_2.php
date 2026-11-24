@@ -49,7 +49,7 @@ foreach($personalInfos as $i => $personalInfo) {
 
 //Q2-3
 $ages = [20, 25, 30];
-foreach($personalInfos as $i => $personalInfo) {
+foreach($personalInfos as $i => $personalInfo) {　//ポイント　何に対してループ処理してるか、$iと$personalInfoの役割は？
   $personalInfo['age'] = $ages[$i];
 }
 
@@ -91,8 +91,8 @@ class Student
         echo "{$this->studentName}は{$subject}の授業に参加しました。学籍番号：{$this->studentId}";
     }
 }
-
-$yamada = new Student(120, '山田');
+//クラスの中の時点では$thisはまだ定義されていないので、クラスの外でインスタンス化してから$yamadaの名前を出す
+$yamada = new Student(120, '山田');//○○に値を渡してインスタンス化
 $yamada->attend('PHP');
 
 
@@ -111,3 +111,12 @@ $diff = $today->diff($ThatDay);
 echo "あの日から{$diff->days}日経過しました。";
 
 ?>
+
+$todayにDateTimeクラスをインスタンス化したオブジェクトを代入します。
+
+$ThatDayには、DateTimeクラスに1992-04-25を渡してインスタンス化したオブジェクトを代入します。
+
+次に、$diffにDateTimeオブジェクトのdiffメソッドの戻り値を代入します。
+
+最後に、$diffのdaysプロパティの値を取得して、文字列内に埋め込んで表示します。
+宿題　：　Q5-2の説明の文章を再リクエスト
