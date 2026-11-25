@@ -37,6 +37,8 @@ function redirectToPostedPage()
 
 function savePostedData($post)
 {
+    checkToken($post['token']);
+    validate($post); // 追記
     $path = getRefererPath();
     switch ($path) {
         case '/new.php':
@@ -69,7 +71,14 @@ function e($text)
     return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 }
 
-
+// 追記
+function validate($post)
+{
+    if (isset($post['content']) && $post['content'] === '') {
+        $_SESSION['err'] = '入力がありません';
+        redirectToPostedPage();
+    }
+}
 
 
 
