@@ -1,11 +1,39 @@
 <?php
 require_once('connection.php');
+session_start(); //追記
 
 function getRefererPath()
 {
     $urlArray = parse_url($_SERVER['HTTP_REFERER']);
     return $urlArray['path'];
 }
+
+// SESSIONにtokenを格納する
+function setToken()
+{
+  $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
+}
+
+// SESSIONに格納されたtokenのチェックを行い、SESSIONにエラー文を格納する
+function checkToken($token)
+{
+  if (empty($_SESSION['token']) || ($_SESSION['token'] !== $token)) {
+    $_SESSION['err'] = '不正な操作です';
+    redirectToPostedPage();
+  }
+}
+
+function unsetError()
+{
+  $_SESSION['err'] = '';
+}
+
+function redirectToPostedPage()
+{
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  exit();
+}
+
 
 function savePostedData($post)
 {

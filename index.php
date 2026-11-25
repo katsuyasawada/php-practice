@@ -1,6 +1,7 @@
 <?php
 require_once('functions.php');
 header('Set-Cookie: userId=123');
+setToken();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -9,6 +10,9 @@ header('Set-Cookie: userId=123');
   <title>Home</title>
 </head>
 <body>
+  <?php if (!empty($_SESSION['err'])): ?> <!-- 追記 -->
+    <p><?= $_SESSION['err']; ?></p> <!-- 追記 -->
+  <?php endif; ?> <!-- 追記 -->
   welcome hello world
   <div>
      <a href="new.php">
@@ -37,6 +41,7 @@ header('Set-Cookie: userId=123');
             <form action="store.php" method="post">
               <!--<input type="hidden" name="id" value="<?= $todo['id']; ?>">-->
               <input type="hidden" name="id" value="<?= e($todo['id']); ?>">
+              <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">  <!-- 追記 -->
               <button type="submit">削除</button>
             </form>
           </td>
@@ -44,6 +49,7 @@ header('Set-Cookie: userId=123');
       <?php endforeach; ?>
     </table>
   </div>
+  <?php unsetError(); ?> <!-- 追記 -->
 </body>
 </html>
 
