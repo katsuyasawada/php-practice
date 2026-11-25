@@ -37,6 +37,7 @@ function redirectToPostedPage()
 
 function savePostedData($post)
 {
+    checkToken($post['token']);
     $path = getRefererPath();
     switch ($path) {
         case '/new.php':
