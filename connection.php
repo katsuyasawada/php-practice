@@ -14,29 +14,40 @@ function connectPdo()
 function createTodoData($todoText)
 {
     $dbh = connectPdo();
-    $sql = "INSERT INTO todos (content) VALUES '{$todoText}'" ; 
-    $dbh->query($sql);
+    $sql = 'INSERT INTO todos (content) VALUES (:todoText)'; //編集
+    $stmt = $dbh->prepare($sql); //追記
+    $stmt->bindValue(':todoText', $todoText, PDO::PARAM_STR); //追記
+    $stmt->execute(); //追記
 }
 
 function updateTodoData($post)
 {
     $dbh = connectPdo();
-    $sql = "UPDATE todos SET content = '{$post['content']}' WHERE id = '{$post['id']}'" ;
-    $dbh->query($sql);
+    $sql = 'UPDATE todos SET content = :todoText WHERE id = :id'; //編集
+    $stmt = $dbh->prepare($sql); //追記
+    $stmt->bindValue(':todoText', $post['content'], PDO::PARAM_STR); //追記
+    $stmt->bindValue(':id', (int) $post['id'], PDO::PARAM_INT); //追記
+    $stmt->execute(); //追記
 }
 
 function deleteTodoData($id)
 {
     $dbh = connectPdo();
     $now = date('Y-m-d H:i:s');
-    $sql = "UPDATE todos SET deleted_at = '$now' WHERE id = $id";
+    $sql = "UPDATE todos SET deleted_at = '$now' WHERE id = :id";
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+    $stmt->execute();
 }
 
 function getTodoTextById($id)
 {
     $dbh = connectPdo();
-    $sql = "SELECT * FROM todos WHERE deleted_at IS NULL AND id = $id";
-    $data = $dbh->query($sql)->fetch();
+    $sql = "SELECT * FROM todos WHERE deleted_at IS NULL AND id = :id";
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', (int) $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $data = $stmt->fetch();
     return $data['content'];
 }
 
