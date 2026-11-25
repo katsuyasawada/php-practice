@@ -10,7 +10,7 @@ $todo = getSelectedTodo($_GET['id']);
 </head>
 <body>
   <form action="store.php" method="post">
-    <input type="hidden" name="token" value"">
+    <input type="hidden" name="token" value="">
     <!--<input type="hidden" name="id" value="<?//= $_GET['id']; ?>">
     <input type="text" name="content" value="<?//= $todo ?>">-->
     <input type="hidden" name="id" value="<?= e($_GET['id']); ?>">
