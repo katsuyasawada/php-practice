@@ -1,7 +1,6 @@
 <?php
 require_once('functions.php');
 $todo = getSelectedTodo($_GET['id']);
-setToken();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,19 +9,17 @@ setToken();
   <title>編集</title>
 </head>
 <body>
-  <?php if (!empty($_SESSION['err'])): ?> <!-- 追記 -->
-    <p><?= $_SESSION['err']; ?></p> <!-- 追記 -->
-  <?php endif; ?> <!-- 追記 -->
   <form action="store.php" method="post">
-    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>"> <!-- 追記 -->
-    <input type="hidden" name="id" value="<?= e($_GET['id']); ?>"> <!-- 編集 -->
-    <input type="text" name="content" value="<?= e($todo); ?>"> <!-- 編集 -->
+    <!--<input type="hidden" name="token" value"">-->
+    <input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+    <input type="text" name="content" value="<?= $todo ?>">
+    <!--<input type="hidden" name="id" value="<?//= e($_GET['id']); ?>">
+    <input type="text" name="content" value="<?//= e($todo) ?>">-->
     <input type="submit" value="更新">
   </form>
   <div>
     <a href="index.php">一覧へもどる</a>
   </div>
-  <?php unsetError(); ?>
 </body>
 </html>
 
